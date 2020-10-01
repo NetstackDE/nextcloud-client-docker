@@ -15,14 +15,24 @@ This image is based on the work made by: [Martin Peters](https://github.com/Frea
       -e NC_URL=$server_url\
       juanitomint/nextcloud-client
 
-## Example using local folder and exclude a subfolder
+## Example using local folder and exclude settings. You have to place a "exclude" file and a "unsyncfolders" file into one directory and mount it into the docker container
 
     docker run -it --rm \
       -v $(pwd)/sync-folder:/media/nextcloud \
-      -e NC_EXCLUDE=foldername \
+      -v /path/to/settingsfolder:/settings \
       -e NC_USER=$username -e NC_PASS=$password \
       -e NC_URL=$server_url\
       juanitomint/nextcloud-client
+
+## Example for the file "exclude" in the settings folder
+
+    file1
+    file2
+
+## Example for the file "unsyncfolders" in the settings folder
+
+    folder1
+    folder2
 
 ## Example using a [named volume](https://docs.docker.com/storage/volumes/)
 
@@ -40,6 +50,7 @@ This image is based on the work made by: [Martin Peters](https://github.com/Frea
       -e NC_URL=$server_url\
       -e NC_EXIT=true\
       juanitomint/nextcloud-client
+
 
 
 replace:
